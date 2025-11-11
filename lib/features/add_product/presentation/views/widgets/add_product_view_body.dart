@@ -1,5 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:fruits_hub_dashboard/core/helper_functions/build_error_snack_bar.dart';
+import 'package:fruits_hub_dashboard/core/widgets/custom_button.dart';
 import 'package:fruits_hub_dashboard/core/widgets/custom_text_form_field.dart';
+import 'package:fruits_hub_dashboard/features/add_product/domain/entities/add_product_input_entity.dart';
 import 'package:fruits_hub_dashboard/features/add_product/presentation/views/widgets/image_field.dart';
 import 'package:fruits_hub_dashboard/features/add_product/presentation/views/widgets/is_featured_check_box.dart';
 
@@ -14,6 +19,13 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
 
+  late String productName;
+  late String productCode;
+  late String productDescription;
+  late num productPrice;
+  File? image;
+  bool isFeatured = false;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,30 +37,76 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
           child: Column(
             children: [
               const SizedBox(height: 16),
-              const CustomTextFormField(
+              CustomTextFormField(
+                onSaved: (value) {
+                  productName = value!;
+                },
                 hintText: 'Product Name',
                 textInputType: TextInputType.text,
               ),
               const SizedBox(height: 16),
-              const CustomTextFormField(
+              CustomTextFormField(
+                onSaved: (value) {
+                  productPrice = num.parse(value!);
+                },
                 hintText: 'Product Price',
                 textInputType: TextInputType.number,
               ),
               const SizedBox(height: 16),
-              const CustomTextFormField(
+              CustomTextFormField(
+                onSaved: (value) {
+                  productCode = value!.toLowerCase();
+                },
                 hintText: 'Product Code',
                 textInputType: TextInputType.number,
               ),
               const SizedBox(height: 16),
-              const CustomTextFormField(
+              CustomTextFormField(
+                onSaved: (value) {
+                  productDescription = value!;
+                },
                 hintText: 'Product Description',
                 textInputType: TextInputType.text,
                 maxLines: 5,
               ),
               const SizedBox(height: 16),
-              IsFeaturedCheckBox(onChanged: (value) {}),
+              IsFeaturedCheckBox(
+                onChanged: (value) {
+                  isFeatured = value;
+                },
+              ),
               const SizedBox(height: 16),
-              ImageField(onImagePicked: (image) {}),
+              ImageField(
+                onImagePicked: (image) {
+                  this.image = image;
+                },
+              ),
+              const SizedBox(height: 24),
+              CustomButton(
+                onPressed: () {
+                  if (image != null) {
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+                      AddProductInputEntity inputEntity = AddProductInputEntity(
+                        productName: productName,
+                        productCode: productCode,
+                        productDescription: productDescription,
+                        productPrice: productPrice,
+                        image: image!,
+                        isFeatured: isFeatured,
+                      );
+                    } else {
+                      setState(() {
+                        autoValidateMode = AutovalidateMode.always;
+                      });
+                    }
+                  } else {
+                    buildErrorSnackBar(context, 'Image is required');
+                  }
+                },
+                text: 'Add Product',
+              ),
+              const SizedBox(height: 24),
             ],
           ),
         ),
