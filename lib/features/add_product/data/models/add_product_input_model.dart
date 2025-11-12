@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fruits_hub_dashboard/features/add_product/data/models/review_model.dart';
 import 'package:fruits_hub_dashboard/features/add_product/domain/entities/add_product_input_entity.dart';
 
 class AddProductInputModel {
@@ -16,6 +17,7 @@ class AddProductInputModel {
   final String? imageUrl;
   final bool isFeatured;
   final bool isOrganic;
+  final List<ReviewModel> reviews;
 
   AddProductInputModel({
     required this.productName,
@@ -29,6 +31,7 @@ class AddProductInputModel {
     this.imageUrl,
     required this.isFeatured,
     this.isOrganic = false,
+    required this.reviews,
   });
 
   factory AddProductInputModel.fromEntity(AddProductInputEntity entity) {
@@ -44,6 +47,7 @@ class AddProductInputModel {
       imageUrl: entity.imageUrl,
       isFeatured: entity.isFeatured,
       isOrganic: entity.isOrganic,
+      reviews: entity.reviews.map((e) => ReviewModel.fromEntity(e)).toList(),
     );
   }
 
@@ -60,6 +64,7 @@ class AddProductInputModel {
       "imageUrl": imageUrl,
       "isFeatured": isFeatured,
       "isOrganic": isOrganic,
+      "reviews": reviews.map((e) => e.toJson()).toList(),
     };
   }
 }

@@ -135,6 +135,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                         image: image!,
                         isFeatured: isFeatured,
                         isOrganic: isOrganic,
+                        reviews: [],
                       );
                       context.read<AddProductCubit>().addProduct(inputEntity);
                     } else {
