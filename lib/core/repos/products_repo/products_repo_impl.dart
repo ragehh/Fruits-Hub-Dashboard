@@ -10,7 +10,7 @@ import '../../errors/failure.dart';
 class ProductsRepoImpl implements ProductsRepo {
   final DatabaseService databaseService;
 
-  ProductsRepoImpl({required this.databaseService});
+  ProductsRepoImpl(this.databaseService);
 
   @override
   Future<Either<Failure, void>> addProduct(

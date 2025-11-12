@@ -17,6 +17,6 @@ void setupGetIt() {
     ImagesRepoImpl(getIt.get<StorageService>()),
   );
   getIt.registerSingleton<ProductsRepo>(
-    ProductsRepoImpl(databaseService: getIt.get<DatabaseService>()),
+    ProductsRepoImpl(getIt.get<DatabaseService>()),
   );
 }
