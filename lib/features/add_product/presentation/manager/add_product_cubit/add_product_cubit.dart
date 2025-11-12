@@ -1,8 +1,8 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub_dashboard/core/repos/images_repo/images_repo.dart';
 import 'package:fruits_hub_dashboard/core/repos/products_repo/products_repo.dart';
 import 'package:fruits_hub_dashboard/features/add_product/domain/entities/add_product_input_entity.dart';
-import 'package:meta/meta.dart';
 
 part 'add_product_state.dart';
 
