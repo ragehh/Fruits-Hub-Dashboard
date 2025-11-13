@@ -1,0 +1,3 @@
+const kSubabaseUrl = 'https://nwmgxqxazyjtzzcvwixh.supabase.co';
+const kSubabaseApiKey =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im53bWd4cXhhenlqdHp6Y3Z3aXhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMwMzExNjAsImV4cCI6MjA3ODYwNzE2MH0.MjkWIcEH6c76Mbv5ujurGmCBQeSduZ1wk6Oeh9Xs250';
