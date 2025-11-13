@@ -9,7 +9,17 @@ class SupabaseStorageService implements StorageService {
   static late Supabase _supabase;
 
   static createBucket(String bucketName) async {
-    await _supabase.client.storage.createBucket(bucketName);
+    var buckets = await _supabase.client.storage.listBuckets();
+    bool isBucketExists = false;
+    for (var bucket in buckets) {
+      if (bucket.id == bucketName) {
+        isBucketExists = true;
+        break;
+      }
+    }
+    if (!isBucketExists) {
+      await _supabase.client.storage.createBucket(bucketName);
+    }
   }
 
   static initSupabase() async {
