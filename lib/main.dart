@@ -13,6 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = CustomBlocObserver();
   await SupabaseStorageService.initSupabase();
+  await SupabaseStorageService.createBucket('fruits_bucket');
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   setupGetIt();
   runApp(const MyApp());
