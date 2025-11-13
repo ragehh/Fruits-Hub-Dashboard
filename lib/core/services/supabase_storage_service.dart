@@ -32,13 +32,12 @@ class SupabaseStorageService implements StorageService {
   @override
   Future<String> uploadFile(String path, File file) async {
     String fileName = p.basename(file.path);
-    String extensionName = p.extension(file.path);
     var result = await _supabase.client.storage
         .from('fruits_bucket')
-        .upload('$path/$fileName.$extensionName', file);
+        .upload('$path/$fileName', file);
     var fileUrl = _supabase.client.storage
         .from('fruits_bucket')
-        .getPublicUrl('$path/$fileName.$extensionName');
+        .getPublicUrl('$path/$fileName');
     return fileUrl;
   }
 }

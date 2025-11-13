@@ -60,7 +60,6 @@ class AddProductInputModel {
       "expirationMonths": expirationMonths,
       "numberOfCalories": numberOfCalories,
       "unitAmount": unitAmount,
-      "image": image,
       "imageUrl": imageUrl,
       "isFeatured": isFeatured,
       "isOrganic": isOrganic,
