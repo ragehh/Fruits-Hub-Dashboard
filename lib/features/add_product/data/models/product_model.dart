@@ -1,15 +1,16 @@
 import 'dart:io';
 
 import 'package:fruits_hub_dashboard/features/add_product/data/models/review_model.dart';
-import 'package:fruits_hub_dashboard/features/add_product/domain/entities/add_product_input_entity.dart';
+import 'package:fruits_hub_dashboard/features/add_product/domain/entities/product_entity.dart';
 
-class AddProductInputModel {
+class ProductModel {
   final String productName;
   final String productCode;
   final String productDescription;
   final num productPrice;
   final num avgRating = 0;
   final num avgCount = 0;
+  final num sellingCount;
   final int expirationMonths;
   final int numberOfCalories;
   final int unitAmount;
@@ -19,7 +20,7 @@ class AddProductInputModel {
   final bool isOrganic;
   final List<ReviewModel> reviews;
 
-  AddProductInputModel({
+  ProductModel({
     required this.productName,
     required this.productCode,
     required this.productDescription,
@@ -27,6 +28,7 @@ class AddProductInputModel {
     required this.expirationMonths,
     required this.numberOfCalories,
     required this.unitAmount,
+    this.sellingCount = 0,
     required this.image,
     this.imageUrl,
     required this.isFeatured,
@@ -34,8 +36,8 @@ class AddProductInputModel {
     required this.reviews,
   });
 
-  factory AddProductInputModel.fromEntity(AddProductInputEntity entity) {
-    return AddProductInputModel(
+  factory ProductModel.fromEntity(ProductEntity entity) {
+    return ProductModel(
       productName: entity.productName,
       productCode: entity.productCode,
       productDescription: entity.productDescription,
@@ -60,6 +62,7 @@ class AddProductInputModel {
       "expirationMonths": expirationMonths,
       "numberOfCalories": numberOfCalories,
       "unitAmount": unitAmount,
+      "sellingCount": sellingCount,
       "imageUrl": imageUrl,
       "isFeatured": isFeatured,
       "isOrganic": isOrganic,

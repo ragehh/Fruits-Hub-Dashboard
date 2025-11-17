@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:fruits_hub_dashboard/features/add_product/domain/entities/review_entity.dart';
 
-class AddProductInputEntity {
+class ProductEntity {
   final String productName;
   final String productCode;
   final String productDescription;
@@ -18,7 +18,7 @@ class AddProductInputEntity {
   final bool isOrganic;
   final List<ReviewEntity> reviews;
 
-  AddProductInputEntity({
+  ProductEntity({
     required this.productName,
     required this.productCode,
     required this.productDescription,
