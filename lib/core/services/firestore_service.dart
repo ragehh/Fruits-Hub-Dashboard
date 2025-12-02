@@ -5,6 +5,7 @@ import 'database_service.dart';
 class FireStoreService implements DatabaseService {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
+  @override
   Future<void> addData({
     required String path,
     required Map<String, dynamic> data,
@@ -17,6 +18,7 @@ class FireStoreService implements DatabaseService {
     }
   }
 
+  @override
   Future<dynamic> getData({
     required String path,
     String? documentId,
@@ -43,6 +45,7 @@ class FireStoreService implements DatabaseService {
     }
   }
 
+  @override
   Future<bool> checkIfDataExists({
     required String path,
     required String documentId,
