@@ -6,20 +6,20 @@ class ShippingAddressModel {
   String? address;
   String? city;
   String? email;
-  String? floor;
+  String? addressDetails;
 
   ShippingAddressModel({
     this.name,
     this.phone,
     this.address,
-    this.floor,
+    this.addressDetails,
     this.city,
     this.email,
   });
 
   @override
   String toString() {
-    return '$address $floor $city';
+    return '$address $city $addressDetails ';
   }
 
   factory ShippingAddressModel.fromJson(Map<String, dynamic> json) {
@@ -27,7 +27,7 @@ class ShippingAddressModel {
       name: json['name'],
       phone: json['phone'],
       address: json['address'],
-      floor: json['floor'],
+      addressDetails: json['addressDetails'],
       city: json['city'],
       email: json['email'],
     );
@@ -38,7 +38,7 @@ class ShippingAddressModel {
       'name': name,
       'phone': phone,
       'address': address,
-      'floor': floor,
+      'addressDetails': addressDetails,
       'city': city,
       'email': email,
     };
@@ -49,7 +49,7 @@ class ShippingAddressModel {
       name: name,
       phone: phone,
       address: address,
-      floor: floor,
+      addressDetails: addressDetails,
       city: city,
       email: email,
     );

@@ -1,11 +1,13 @@
 import 'package:fruits_hub_dashboard/features/orders/data/models/shipping_address_model.dart';
 
+import '../../../../core/enums/order_status_enum.dart';
 import '../../domain/entities/order_entity.dart';
 import 'order_product_model.dart';
 
 class OrderModel {
   final double totalPrice;
   final String uId;
+  final String status;
   final ShippingAddressModel shippingAddressModel;
   final List<OrderProductModel> orderProducts;
   final String paymentMethod;
@@ -16,17 +18,19 @@ class OrderModel {
     required this.shippingAddressModel,
     required this.orderProducts,
     required this.paymentMethod,
+    required this.status,
   });
 
   factory OrderModel.fromJson(Map<String, dynamic> json) => OrderModel(
     totalPrice: json['totalPrice'],
     uId: json['uId'],
+    status: json['status'],
     shippingAddressModel: ShippingAddressModel.fromJson(
       json['shippingAddressModel'],
     ),
-    orderProducts: json['orderProducts']
-        .map((e) => OrderProductModel.fromJson(e))
-        .toList(),
+    orderProducts: List<OrderProductModel>.from(
+      json['orderProducts'].map((e) => OrderProductModel.fromJson(e)).toList(),
+    ),
     paymentMethod: json['paymentMethod'],
   );
 
@@ -43,8 +47,16 @@ class OrderModel {
   toEntity() => OrderEntity(
     totalPrice: totalPrice,
     uId: uId,
+    status: fetchEnum(),
     shippingAddressEntity: shippingAddressModel.toEntity(),
     orderProducts: orderProducts.map((e) => e.toEntity()).toList(),
     paymentMethod: paymentMethod,
   );
+
+  OrderStatusEnum fetchEnum() {
+    return OrderStatusEnum.values.firstWhere((e) {
+      var enumStatus = e.name.toString();
+      return enumStatus == status;
+    });
+  }
 }
