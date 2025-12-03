@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fruits_hub_dashboard/features/orders/domain/entities/order_entity.dart';
 
 import '../../../../../core/enums/order_status_enum.dart';
+import 'order_action_buttons.dart';
 
 class OrderItemWidget extends StatelessWidget {
   final OrderEntity orderEntity;
@@ -115,6 +116,8 @@ class OrderItemWidget extends StatelessWidget {
                 );
               },
             ),
+            const SizedBox(height: 16),
+            OrderActionButtons(orderEntity: orderEntity),
           ],
         ),
       ),

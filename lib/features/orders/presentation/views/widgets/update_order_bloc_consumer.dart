@@ -11,7 +11,7 @@ class UpdateOrderBlocConsumer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer(
+    return BlocConsumer<UpdateOrderCubit, UpdateOrderState>(
       listener: (BuildContext context, state) {
         if (state is UpdateOrderSuccess) {
           buildSnackBar(context, 'Order updated successfully.');
