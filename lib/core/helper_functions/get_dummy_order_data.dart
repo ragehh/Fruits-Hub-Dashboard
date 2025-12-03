@@ -53,6 +53,7 @@ OrderEntity getDummyOrderData() {
   return OrderEntity(
     totalPrice: totalPrice,
     uId: 'user123',
+    orderId: 'fRXjK9T1ykkXpgkz8CGx',
     status: OrderStatusEnum.pending,
     shippingAddressEntity: shippingAddress,
     orderProducts: orderProducts,

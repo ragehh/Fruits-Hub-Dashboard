@@ -7,6 +7,7 @@ import 'order_product_model.dart';
 class OrderModel {
   final double totalPrice;
   final String uId;
+  final String orderId;
   final String status;
   final ShippingAddressModel shippingAddressModel;
   final List<OrderProductModel> orderProducts;
@@ -15,6 +16,7 @@ class OrderModel {
   OrderModel({
     required this.totalPrice,
     required this.uId,
+    required this.orderId,
     required this.shippingAddressModel,
     required this.orderProducts,
     required this.paymentMethod,
@@ -24,6 +26,7 @@ class OrderModel {
   factory OrderModel.fromJson(Map<String, dynamic> json) => OrderModel(
     totalPrice: json['totalPrice'],
     uId: json['uId'],
+    orderId: json['orderId'],
     status: json['status'],
     shippingAddressModel: ShippingAddressModel.fromJson(
       json['shippingAddressModel'],
@@ -47,6 +50,7 @@ class OrderModel {
   toEntity() => OrderEntity(
     totalPrice: totalPrice,
     uId: uId,
+    orderId: orderId,
     status: fetchEnum(),
     shippingAddressEntity: shippingAddressModel.toEntity(),
     orderProducts: orderProducts.map((e) => e.toEntity()).toList(),
